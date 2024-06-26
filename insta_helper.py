@@ -1,6 +1,6 @@
 import time
 from selenium.common import WebDriverException
-from BrowserUtils import BrowserUtils
+from browser_utils import BrowserUtils
 from selenium.webdriver.chrome.options import Options
 
 # Check versions of Chrome and Selenium
@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.options import Options
 try:
     options = Options()
     options.add_argument("lang=en")
-    driver = BrowserUtils.setup_chrome_driver(options)
+    driver = BrowserUtils.get_chrome_driver(options)
     driver.get("https://www.google.com")
     while driver.window_handles:
         time.sleep(5)

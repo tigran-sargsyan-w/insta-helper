@@ -8,7 +8,7 @@ import winreg as reg
 
 class BrowserUtils:
     @staticmethod
-    def setup_chrome_driver(options=None, service=None):
+    def get_chrome_driver(options=None, service=None):
         if options is None:
             options = Options()
 
@@ -26,7 +26,7 @@ class BrowserUtils:
     def get_chrome_version_selenium():
         options = Options()
         options.add_argument("--headless")
-        driver = BrowserUtils.setup_chrome_driver(options=options)
+        driver = BrowserUtils.get_chrome_driver(options=options)
         chrome_version = driver.capabilities['browserVersion']
         driver.quit()
         return chrome_version
