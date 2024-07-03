@@ -7,3 +7,11 @@ After cloning the repository, install the dependencies by running the following 
 
 ```sh
 pip install -r requirements.txt
+
+```
+## Usage
+Entry point of the program is `main.py`. Run the following command to start the program:
+
+```sh
+python main.py
+```

@@ -6,60 +6,63 @@ from selenium_helper import SeleniumHelper
 from xpath import xpath
 
 
-def check_login_result(selenium_helper):
-    if is_login_successful(selenium_helper):
-        print("Login successful")
-    else:
-        print("Login failed, check your login and password...")
+class InstaHelper:
+    def __init__(self):
+        self.driver = None
+        self.helper = None
 
+    def check_login_result(self):
+        if self.is_login_successful():
+            print("Login successful")
+        else:
+            print("Login failed, check your login and password...")
 
-def is_login_successful(selenium_helper):
-    try:
-        incorrect_password_message = selenium_helper.wait_for_element("login", "incorrect_password")
-        if incorrect_password_message is not None:
-            return False
-    except TimeoutException:
-        return True
+    def is_login_successful(self):
+        try:
+            incorrect_password_message = self.helper.wait_for_element("login", "incorrect_password")
+            if incorrect_password_message is not None:
+                return False
+        except TimeoutException:
+            return True
 
+    def run(self):
+        try:
+            options = Options()
+            options.add_argument("lang=en")
+            # Get the driver
+            self.driver = BrowserUtils.get_chrome_driver(options)
+            # Get the helper
+            self.helper = SeleniumHelper(self.driver, xpath)
 
-# Check functionality of BrowserUtils
-try:
-    options = Options()
-    options.add_argument("lang=en")
-    # Get the driver
-    driver = BrowserUtils.get_chrome_driver(options)
-    # Get the helper
-    helper = SeleniumHelper(driver, xpath)
+            self.driver.get('https://www.instagram.com/')
 
-    driver.get('https://www.instagram.com/')
+            cookie_allow_button = self.helper.wait_for_element("cookies", "allow_button")
+            cookie_decline_button = self.helper.wait_for_element("cookies", "decline_button")
 
-    cookie_allow_button = helper.wait_for_element("cookies", "allow_button")
-    cookie_decline_button = helper.wait_for_element("cookies", "decline_button")
+            # Click on the buttons (if needed to accept or decline cookies)
+            cookie_allow_button.click()
+            # cookie_decline_button.click()
 
-    # Click on the buttons (if needed to accept or decline cookies)
-    cookie_allow_button.click()
-    # cookie_decline_button.click()
+            username_input = self.helper.wait_for_element("login", "username")
+            password_input = self.helper.wait_for_element("login", "password")
 
-    username_input = helper.wait_for_element("login", "username")
-    password_input = helper.wait_for_element("login", "password")
+            username_input.send_keys("username")
+            password_input.send_keys("password")
+            print("Login data entered")
 
-    username_input.send_keys("username")
-    password_input.send_keys("password")
-    print("Login data entered")
+            time.sleep(3)
+            password_input.submit()
+            print("Login data submitted")
 
-    time.sleep(3)
-    password_input.submit()
-    print("Login data submitted")
+            self.check_login_result()
 
-    check_login_result(helper)
+            while self.driver.window_handles:
+                time.sleep(5)
 
-    while driver.window_handles:
-        time.sleep(5)
-
-except TimeoutException as e:
-    print(f"TimeoutException: {e}")
-except NoSuchElementException as e:
-    print(f"NoSuchElementException: {e}")
-except WebDriverException as e:
-    driver.quit()
-    print(f"WebDriverException: Perhaps the browser was closed")
+        except TimeoutException as e:
+            print(f"TimeoutException: {e}")
+        except NoSuchElementException as e:
+            print(f"NoSuchElementException: {e}")
+        except WebDriverException as e:
+            self.driver.quit()
+            print(f"WebDriverException: Perhaps the browser was closed")
