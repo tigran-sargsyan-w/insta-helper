@@ -7,6 +7,13 @@ import winreg as reg
 
 
 class BrowserUtils:
+
+    @staticmethod
+    def print_browser_and_selenium_versions():
+        print(f"Chrome version (from registry): {BrowserUtils.get_chrome_version_registry()}")
+        print(f"Chrome version (from Selenium): {BrowserUtils.get_chrome_version_selenium()}")
+        print(f"Selenium version: {BrowserUtils.get_selenium_version()}")
+
     @staticmethod
     def get_chrome_driver(options=None, service=None):
         if options is None:
