@@ -19,3 +19,8 @@ xpath["login"] = {
     "password": "//input[@name='password']",
     "incorrect_password": "//div[contains(text(), 'password was incorrect')]",
 }
+
+xpath["user_page"] = {
+    "message_button": "//div[contains(text(), 'Message')]",
+    "message_area": "//div[@contenteditable='true' and @role='textbox']"
+}

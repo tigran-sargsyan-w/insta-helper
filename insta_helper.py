@@ -1,6 +1,12 @@
 import time
+from telnetlib import EC
+
 from selenium.common import WebDriverException, TimeoutException, NoSuchElementException
+from selenium.webdriver import Keys
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 from browser_utils import BrowserUtils
 from selenium_helper import SeleniumHelper
 from xpath import xpath
@@ -11,9 +17,51 @@ class InstaHelper:
         self.driver = None
         self.helper = None
 
+    def run(self):
+        my_username = "my_username"
+        my_password = "my_password"
+        username = "username"
+        message = "Hello, this is a test message!"
+
+        try:
+            self.initialize_driver_and_helper()
+
+            self.driver.get('https://www.instagram.com/')
+            self.helper.random_delay()
+            self.handle_cookies()
+            self.helper.random_delay()
+            self.handle_login(my_username, my_password)
+            self.helper.random_delay()
+            self.check_login_result()
+
+            self.visit_user_page(username)
+            self.helper.random_delay()
+            self.send_message(username, message)
+
+            while self.driver.window_handles:
+                time.sleep(5)
+
+        except TimeoutException as e:
+            print(f"TimeoutException: {e}")
+        except NoSuchElementException as e:
+            print(f"NoSuchElementException: {e}")
+        except WebDriverException as e:
+            self.driver.quit()
+            print(f"WebDriverException: Perhaps the browser was closed")
+
     def initialize_driver_and_helper(self):
         options = Options()
         options.add_argument("lang=en")
+        options.add_argument("user-agent=Your User-Agent String Here")
+        # options.add_argument("--start-maximized")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_experimental_option('excludeSwitches', ['enable-automation'])
+        options.add_experimental_option('useAutomationExtension', False)
+        options.add_argument("--disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--profile-directory=Default")
+        options.add_argument("--incognito")
+        options.add_argument("--disable-plugins-discovery")
         # Get the driver
         self.driver = BrowserUtils.get_chrome_driver(options)
         # Get the helper
@@ -28,11 +76,11 @@ class InstaHelper:
         # cookie_decline_button.click()
         print("Cookies handled")
 
-    def handle_login(self):
+    def handle_login(self, username, password):
         username_input = self.helper.wait_for_element("login", "username")
         password_input = self.helper.wait_for_element("login", "password")
-        username_input.send_keys("username")
-        password_input.send_keys("password")
+        username_input.send_keys(username)
+        password_input.send_keys(password)
         print("Login data entered")
         time.sleep(2)
         password_input.submit()
@@ -52,22 +100,27 @@ class InstaHelper:
         except TimeoutException:
             return True
 
-    def run(self):
+    def visit_user_page(self, username):
+        self.driver.get(f'https://www.instagram.com/{username}/')
+        print(f"Переход на страницу пользователя {username}")
+
+    def send_message(self, username, message):
         try:
-            self.initialize_driver_and_helper()
-
-            self.driver.get('https://www.instagram.com/')
-            self.handle_cookies()
-            self.handle_login()
-            self.check_login_result()
-
-            while self.driver.window_handles:
-                time.sleep(5)
-
-        except TimeoutException as e:
-            print(f"TimeoutException: {e}")
-        except NoSuchElementException as e:
-            print(f"NoSuchElementException: {e}")
-        except WebDriverException as e:
-            self.driver.quit()
-            print(f"WebDriverException: Perhaps the browser was closed")
+            message_button = self.helper.wait_for_element("user_page", "message_button")
+            if not message_button:
+                print(f"Message button not found for {username}")
+                return
+            message_button.click()
+            self.helper.random_delay()
+            message_area = self.helper.wait_for_element("user_page", "message_area")
+            message_area.send_keys(message)
+            print(f"Message: {message} entered for {username}")
+            self.helper.random_delay()
+            message_area.send_keys(Keys.RETURN)
+            print(f"Message sent to {username}")
+            if not message_area:
+                print(f"Message area not found for {username}")
+                return
+        except TimeoutException:
+            print(f"Message button not found for {username}")
+            return
