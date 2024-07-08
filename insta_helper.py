@@ -1,12 +1,10 @@
 import time
-from telnetlib import EC
 
 from selenium.common import WebDriverException, TimeoutException, NoSuchElementException
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 
+from user_data import UserData
 from browser_utils import BrowserUtils
 from selenium_helper import SeleniumHelper
 from xpath import xpath
@@ -18,9 +16,7 @@ class InstaHelper:
         self.helper = None
 
     def run(self):
-        my_username = "my_username"
-        my_password = "my_password"
-        username = "username"
+        username = "aromaze.fr"
         message = "Hello, this is a test message!"
 
         try:
@@ -30,7 +26,7 @@ class InstaHelper:
             self.helper.random_delay()
             self.handle_cookies()
             self.helper.random_delay()
-            self.handle_login(my_username, my_password)
+            self.handle_login(UserData.username, UserData.password)
             self.helper.random_delay()
             self.check_login_result()
 
