@@ -29,7 +29,7 @@ class SeleniumHelper:
         actions = [
             self.scroll_page,
             self.move_mouse_randomly,
-            self.click_random_pixel,
+            # self.click_random_pixel,
             self.hover_over_element,
             self.input_text,
             self.press_random_keys,
@@ -71,7 +71,14 @@ class SeleniumHelper:
             self.random_delay(1, 3)
             action.move_to_element(element).click().send_keys(text).perform()
             self.random_delay(1, 3)
-            print(f"Text entered: {text} in element: {element.get_attribute('outerHTML')}")
+            print(f"Text entered: {text} in element.")
+            # Text selection (Ctrl+A)
+            action.click(element).key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL).perform()
+            self.random_delay(1, 3)
+            # Delete selected text
+            action.send_keys(Keys.DELETE).perform()
+            self.random_delay(1, 3)
+            print("Text cleared in element")
 
     def press_random_keys(self):
         keys = [Keys.ARROW_UP, Keys.ARROW_DOWN, Keys.PAGE_UP, Keys.PAGE_DOWN]

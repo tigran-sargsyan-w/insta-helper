@@ -28,13 +28,16 @@ class InstaHelper:
 
             self.helper.perform_random_human_like_actions()
 
-            # self.helper.random_delay()
-            # self.handle_login(UserData.username, UserData.password)
-            # self.helper.random_delay()
-            # self.check_login_result()
-            #
-            # self.visit_user_page(username)
-            # self.helper.random_delay()
+            self.helper.random_delay()
+            self.handle_login(UserData.username, UserData.password)
+            self.helper.random_delay()
+            self.check_login_result()
+
+            self.visit_user_page(username)
+            self.helper.random_delay()
+
+            self.helper.perform_random_human_like_actions()
+
             # self.send_message(username, message)
 
             while self.driver.window_handles:
