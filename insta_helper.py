@@ -25,22 +25,25 @@ class InstaHelper:
             self.driver.get('https://www.instagram.com/')
             self.helper.random_delay()
             self.handle_cookies()
-            self.helper.random_delay()
-            self.handle_login(UserData.username, UserData.password)
-            self.helper.random_delay()
-            self.check_login_result()
 
-            self.visit_user_page(username)
-            self.helper.random_delay()
-            self.send_message(username, message)
+            self.helper.perform_random_human_like_actions()
+
+            # self.helper.random_delay()
+            # self.handle_login(UserData.username, UserData.password)
+            # self.helper.random_delay()
+            # self.check_login_result()
+            #
+            # self.visit_user_page(username)
+            # self.helper.random_delay()
+            # self.send_message(username, message)
 
             while self.driver.window_handles:
-                time.sleep(5)
+                time.sleep(1)
 
         except TimeoutException as e:
-            print(f"TimeoutException: {e}")
+            print(f"TimeoutException: ")
         except NoSuchElementException as e:
-            print(f"NoSuchElementException: {e}")
+            print(f"NoSuchElementException: ")
         except WebDriverException as e:
             self.driver.quit()
             print(f"WebDriverException: Perhaps the browser was closed")
@@ -67,6 +70,7 @@ class InstaHelper:
     def handle_cookies(self):
         cookie_allow_button = self.helper.wait_for_element("cookies", "allow_button")
         cookie_decline_button = self.helper.wait_for_element("cookies", "decline_button")
+
         # Click on the buttons (if needed to accept or decline cookies)
         cookie_allow_button.click()
         # cookie_decline_button.click()
