@@ -4,9 +4,9 @@ from selenium.common import WebDriverException, TimeoutException, NoSuchElementE
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.options import Options
 
-from filesystem_utils import FileUtils
+from utils.filesystem_utils import FileUtils
 from user_data import UserData
-from browser_utils import BrowserUtils
+from utils.browser_utils import BrowserUtils
 from selenium_helper import SeleniumHelper
 from xpath import xpath
 
