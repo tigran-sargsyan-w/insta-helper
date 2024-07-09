@@ -4,6 +4,7 @@ from selenium.common import WebDriverException, TimeoutException, NoSuchElementE
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.options import Options
 
+from message_generator import MessageGenerator
 from utils.filesystem_utils import FileUtils
 from user_data import UserData
 from utils.browser_utils import BrowserUtils
@@ -28,20 +29,23 @@ class InstaHelper:
             self.helper.random_delay()
             self.handle_cookies()
 
-            self.helper.perform_random_human_like_actions()
+            # self.helper.perform_random_human_like_actions()
+            #
+            # self.helper.random_delay()
+            # self.handle_login(UserData.username, UserData.password)
+            # self.helper.random_delay()
+            # self.check_login_result()
+            #
+            # self.handle_browser_notifications()
+            #
+            # self.visit_user_page(username)
+            # self.helper.random_delay()
+            #
+            # self.handle_browser_notifications()
+            # self.helper.perform_random_human_like_actions()
 
-            self.helper.random_delay()
-            self.handle_login(UserData.username, UserData.password)
-            self.helper.random_delay()
-            self.check_login_result()
-
-            self.handle_browser_notifications()
-
-            self.visit_user_page(username)
-            self.helper.random_delay()
-
-            self.handle_browser_notifications()
-            self.helper.perform_random_human_like_actions()
+            generator = MessageGenerator()
+            print(generator.generate_random_message())
 
             # self.send_message(username, message)
 
