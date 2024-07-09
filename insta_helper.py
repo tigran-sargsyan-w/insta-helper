@@ -4,6 +4,7 @@ from selenium.common import WebDriverException, TimeoutException, NoSuchElementE
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.options import Options
 
+from filesystem_utils import FileUtils
 from user_data import UserData
 from browser_utils import BrowserUtils
 from selenium_helper import SeleniumHelper
@@ -16,6 +17,7 @@ class InstaHelper:
         self.helper = None
 
     def run(self):
+        file_utils = FileUtils()
         username = "aromaze.fr"
         message = "Hello, this is a test message!"
 
@@ -121,7 +123,7 @@ class InstaHelper:
 
     def visit_user_page(self, username):
         self.driver.get(f'https://www.instagram.com/{username}/')
-        print(f"Переход на страницу пользователя {username}")
+        print(f"Go to user page {username}")
 
     def send_message(self, username, message):
         try:
