@@ -1,7 +1,7 @@
 import logging
 import sys
 
-from logger_writer import LoggerWriter
+from utils.logger_writer import LoggerWriter
 
 
 class FileUtils:
