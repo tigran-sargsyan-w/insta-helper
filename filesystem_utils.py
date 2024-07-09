@@ -6,13 +6,13 @@ from logger_writer import LoggerWriter
 
 class FileUtils:
     def __init__(self, log_filename="app.log"):
-        # Настройка логирования
+        # Setting up logging
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
             handlers=[
                 logging.FileHandler(log_filename, mode='w'),
-                logging.StreamHandler(sys.stdout)  # Перенаправляем все print в лог
+                logging.StreamHandler(sys.stdout)  # Redirect all print to log
             ]
         )
         self.logger = logging.getLogger(__name__)

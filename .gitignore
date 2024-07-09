@@ -1,6 +1,3 @@
-# Ignore user_data.py to prevent accidental upload of login and password data
-user_data.py
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
