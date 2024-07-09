@@ -33,9 +33,12 @@ class InstaHelper:
             self.helper.random_delay()
             self.check_login_result()
 
+            self.handle_browser_notifications()
+
             self.visit_user_page(username)
             self.helper.random_delay()
 
+            self.handle_browser_notifications()
             self.helper.perform_random_human_like_actions()
 
             # self.send_message(username, message)
@@ -78,6 +81,19 @@ class InstaHelper:
         cookie_allow_button.click()
         # cookie_decline_button.click()
         print("Cookies handled")
+
+    def handle_browser_notifications(self):
+        try:
+            notification_turn_on_button = self.helper.wait_for_element("notification", "turn_on_button")
+            notification_not_now_button = self.helper.wait_for_element("notification", "not_now_button")
+
+            # Click on the buttons (if needed to turn on or not now for notifications)
+            # notification_turn_on_button.click()
+            notification_not_now_button.click()
+            print("Notifications handled")
+        except TimeoutException:
+            print("No browser notification switcher found")
+            return
 
     def handle_login(self, username, password):
         username_input = self.helper.wait_for_element("login", "username")

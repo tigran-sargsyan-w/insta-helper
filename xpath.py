@@ -14,6 +14,11 @@ xpath["cookies"] = {
     "decline_button": "//button[contains(@class, '_a9--') and contains(text(), 'Decline')]",
 }
 
+xpath["notification"] = {
+    "turn_on_button": "//button[contains(@class, '_a9--') and contains(text(), 'Turn On')]",
+    "not_now_button": "//button[contains(@class, '_a9--') and contains(text(), 'Not Now')]",
+}
+
 xpath["login"] = {
     "username": "//input[@name='username']",
     "password": "//input[@name='password']",
