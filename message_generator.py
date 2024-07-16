@@ -31,10 +31,20 @@ class MessageGenerator:
             "You're doing awesome!"
         ]
         self.closings = [
-            "Goodbye!",
-            "See you later!",
-            "Take care!",
-            "Have a nice day!"
+            "Au revoir !",
+            "À bientôt !",
+            "Prenez soin de vous !",
+            "Bonne journée !",
+            "Passez une bonne journée !",
+            "Bon week-end !",
+            "À plus tard !",
+            "Bonne soirée !",
+            "Bon après-midi !",
+            "Profitez bien de votre journée !",
+            "Prenez soin de vous et à bientôt !",
+            "Merci et à bientôt !",
+            "À très bientôt !",
+            "Cordialement !",
         ]
 
     def generate_random_message(self):
