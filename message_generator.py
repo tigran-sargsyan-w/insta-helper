@@ -15,10 +15,14 @@ class MessageGenerator:
             "Bonjour à tous",
         ]
         self.introductions = [
-            "how are you today?",
-            "what's up?",
-            "how's it going?",
-            "hope you're doing well."
+            "J'espère que vous allez bien.",
+            "J'espère que tout va bien pour vous.",
+            "J'espère que vous passez une bonne journée.",
+            "Je vous souhaite une excellente journée.",
+            "J'espère que tout se passe bien pour vous.",
+            "Je vous souhaite une bonne journée.",
+            "Je vous souhaite une journée agréable.",
+            "J'espère que vous passez une agréable journée.",
         ]
         self.statements = [
             "Python is fun!",
