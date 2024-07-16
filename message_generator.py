@@ -4,16 +4,29 @@ import random
 class MessageGenerator:
     def __init__(self):
         self.greetings = [
-            "Hello", "Hi", "Greetings", "Hey", "Good day"
+            "Hello",
+            "Hi",
+            "Greetings",
+            "Hey",
+            "Good day"
         ]
         self.introductions = [
-            "how are you today?", "what's up?", "how's it going?", "hope you're doing well."
+            "how are you today?",
+            "what's up?",
+            "how's it going?",
+            "hope you're doing well."
         ]
         self.statements = [
-            "Python is fun!", "Keep up the good work!", "Have a great day!", "You're doing awesome!"
+            "Python is fun!",
+            "Keep up the good work!",
+            "Have a great day!",
+            "You're doing awesome!"
         ]
         self.closings = [
-            "Goodbye!", "See you later!", "Take care!", "Have a nice day!"
+            "Goodbye!",
+            "See you later!",
+            "Take care!",
+            "Have a nice day!"
         ]
 
     def generate_random_message(self):
