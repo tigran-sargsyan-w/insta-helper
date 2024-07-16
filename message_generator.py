@@ -4,11 +4,15 @@ import random
 class MessageGenerator:
     def __init__(self):
         self.greetings = [
-            "Hello",
-            "Hi",
-            "Greetings",
-            "Hey",
-            "Good day"
+            "Bonjour",
+            "Salut",
+            "Coucou",
+            "Bonne journée",
+            "Bon matin",
+            "Bonsoir",
+            "Bonne soirée",
+            "Salut tout le monde",
+            "Bonjour à tous",
         ]
         self.introductions = [
             "how are you today?",
