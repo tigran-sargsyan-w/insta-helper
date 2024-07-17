@@ -25,10 +25,17 @@ class MessageGenerator:
             "J'espère que vous passez une agréable journée.",
         ]
         self.statements = [
-            "Python is fun!",
-            "Keep up the good work!",
-            "Have a great day!",
-            "You're doing awesome!"
+            "Je vous invite à vous abonner à notre page Instagram pour obtenir plus d’informations sur nous, et bénéficier de réductions spéciales",
+            "Je vous invite à vous abonner à notre page Instagram pour découvrir plus d’informations sur nous et profiter de réductions exclusives.",
+            "Rejoignez-nous sur Instagram pour en savoir plus sur nous et bénéficier de promotions spéciales réservées à nos abonnés.",
+            "Nous vous invitons à suivre notre page Instagram pour obtenir des informations supplémentaires sur nous et bénéficier de réductions exclusives.",
+            "Nous vous invitons à suivre notre page Instagram pour découvrir davantage d'informations sur nous et profiter de réductions exclusives.",
+            "AROMAZE vous invite à vous abonner à notre page Instagram pour obtenir plus d’informations sur nos bougies et bénéficier de réductions spéciales.",
+            "AROMAZE vous invite à vous abonner à notre page Instagram pour découvrir davantage sur nos bougies et profiter de réductions spéciales.",
+            "Explorez notre collection exclusive de bougies parfumées. Suivez-nous sur Instagram pour ne rien manquer de nos nouveautés et bénéficier d'offres spéciales réservées à notre communauté.",
+            "Abonnez-vous à notre Instagram pour découvrir nos bougies parfumées et profiter d'offres exclusives.",
+            "Abonnez-vous à notre compte Instagram pour découvrir nos bougies parfumées et profiter de nos offres exclusives",
+            "Abonnez-vous à notre compte Instagram pour bénéficier de réductions spéciales sur nos bougies parfumées",
         ]
         self.closings = [
             "Au revoir !",
